@@ -36,27 +36,35 @@
 </head>
 <body class="min-h-screen flex">
     <aside class="w-20 hover:w-64 group flex-shrink-0 bg-white shadow-lg flex flex-col hidden lg:flex transition-all duration-300 ease-in-out **overflow-hidden**">
-        <div class="mt-10 text-black p-4 flex items-center **justify-center** group-hover:justify-start">
-            <div class="bg-white rounded-lg mr-3 flex items-center justify-center shrink-0">
-            <svg **width="4" height="40"** viewBox="0 0 89 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="mt-10 text-black p-4 flex items-center justify-center group-hover:justify-start">
+
+    <!-- Smaller background + smaller icon -->
+    <div class="bg-white rounded-lg mr-3 flex items-center justify-center shrink-0 p-2">
+        <a href="{{ route('dashboard') }}" class="block cursor-pointer">
+            <svg width="55" height="60" viewBox="0 0 89 81" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="89" height="80.3592" rx="11" fill="url(#paint0_linear_32_135)"/>
-                <path d="M22.466 24.1942V50.1165C22.466 51.4915 22.992 52.8102 23.9283 53.7825C24.8645 54.7547 26.1344 55.301 27.4585 55.301H62.4056C63.7297 55.301 64.9995 54.7547 65.9358 53.7825C66.8721 52.8102 67.3981 51.4915 67.3981 50.1165V29.3786C67.3981 28.0036 66.8721 26.6849 65.9358 25.7127C64.9995 24.7404 63.7297 24.1942 62.4056 24.1942H47.4283L42.4358 19.0097H27.4585C26.1344 19.0097 24.8645 19.5559 23.9283 20.5282C22.992 21.5005 22.466 22.8192 22.466 24.1942Z" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22.466 24.1942V50.1165C22.466 51.4915 22.992 52.8102 23.9283 53.7825C24.8645 54.7547 26.1344 55.301 27.4585 55.301H62.4056C63.7297 55.301 64.9995 54.7547 65.9358 53.7825C66.8721 52.8102 67.3981 51.4915 67.3981 50.1165V29.3786C67.3981 28.0036 66.8721 26.6849 65.9358 25.7127C64.9995 24.7404 63.7297 24.1942 62.4056 24.1942H47.4283L42.4358 19.0097H27.4585C26.1344 19.0097 24.8645 19.5559 23.9283 20.5282C22.992 21.5005 22.466 22.8192 22.466 24.1942Z"
+                      stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 <defs>
-                <linearGradient id="paint0_linear_32_135" x1="0" y1="40.1796" x2="89" y2="40.1796" gradientUnits="userSpaceOnUse">
-                    <stop offset="0.211538" stop-color="#0E2461"/>
-                    <stop offset="01.826923" stop-color="#1D49C7"/>
-                </linearGradient>
+                    <linearGradient id="paint0_linear_32_135" x1="0" y1="40.1796" x2="89" y2="40.1796" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.211538" stop-color="#0E2461"/>
+                        <stop offset="0.826923" stop-color="#1D49C7"/>
+                    </linearGradient>
                 </defs>
             </svg>
-            </div>
-            
-            <div class="hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-            <p class="text-xl font-bold leading-tight">Student Record</p>
-            <p class="text-xl font-bold leading-tight">System</p>
-            <p class="text-xs opacity-90 leading-tight mt-0.5">Ateneo de Zamboanga</p>
-            <p class="text-xs opacity-90 leading-tight">University</p>
-            </div>
-        </div>
+        </a>
+    </div>
+
+    <!-- Text (same as before) -->
+    <div class="hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        <p class="text-xl font-bold leading-tight">Student Record</p>
+        <p class="text-xl font-bold leading-tight">System</p>
+        <p class="text-xs opacity-90 leading-tight mt-0.5">Ateneo de Zamboanga</p>
+        <p class="text-xs opacity-90 leading-tight">University</p>
+    </div>
+
+</div>
+
 
         <nav class="p-4 flex-grow w-full">
             <h3 class="text-m font-bold uppercase text-gray-500 mb-3 mt-2 hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 **whitespace-nowrap**">MENU</h3>

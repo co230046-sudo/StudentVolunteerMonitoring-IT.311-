@@ -36,27 +36,36 @@
 </head>
 <body class="min-h-screen flex">
     <aside class="w-20 hover:w-64 group flex-shrink-0 bg-white shadow-lg flex flex-col hidden lg:flex transition-all duration-300 ease-in-out **overflow-hidden**">
-        <div class="mt-10 text-black p-4 flex items-center **justify-center** group-hover:justify-start">
-            <div class="bg-white rounded-lg mr-3 flex items-center justify-center shrink-0">
-            <svg **width="4" height="40"** viewBox="0 0 89 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="mt-10 text-black p-4 flex items-center justify-center group-hover:justify-start">
+
+    <!-- Smaller background + smaller icon -->
+    <div class="bg-white rounded-lg mr-3 flex items-center justify-center shrink-0 p-2">
+        <a href="{{ route('dashboard') }}" class="block cursor-pointer">
+            <svg width="55" height="60" viewBox="0 0 89 81" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="89" height="80.3592" rx="11" fill="url(#paint0_linear_32_135)"/>
-                <path d="M22.466 24.1942V50.1165C22.466 51.4915 22.992 52.8102 23.9283 53.7825C24.8645 54.7547 26.1344 55.301 27.4585 55.301H62.4056C63.7297 55.301 64.9995 54.7547 65.9358 53.7825C66.8721 52.8102 67.3981 51.4915 67.3981 50.1165V29.3786C67.3981 28.0036 66.8721 26.6849 65.9358 25.7127C64.9995 24.7404 63.7297 24.1942 62.4056 24.1942H47.4283L42.4358 19.0097H27.4585C26.1344 19.0097 24.8645 19.5559 23.9283 20.5282C22.992 21.5005 22.466 22.8192 22.466 24.1942Z" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22.466 24.1942V50.1165C22.466 51.4915 22.992 52.8102 23.9283 53.7825C24.8645 54.7547 26.1344 55.301 27.4585 55.301H62.4056C63.7297 55.301 64.9995 54.7547 65.9358 53.7825C66.8721 52.8102 67.3981 51.4915 67.3981 50.1165V29.3786C67.3981 28.0036 66.8721 26.6849 65.9358 25.7127C64.9995 24.7404 63.7297 24.1942 62.4056 24.1942H47.4283L42.4358 19.0097H27.4585C26.1344 19.0097 24.8645 19.5559 23.9283 20.5282C22.992 21.5005 22.466 22.8192 22.466 24.1942Z"
+                      stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 <defs>
-                <linearGradient id="paint0_linear_32_135" x1="0" y1="40.1796" x2="89" y2="40.1796" gradientUnits="userSpaceOnUse">
-                    <stop offset="0.211538" stop-color="#0E2461"/>
-                    <stop offset="01.826923" stop-color="#1D49C7"/>
-                </linearGradient>
+                    <linearGradient id="paint0_linear_32_135" x1="0" y1="40.1796" x2="89" y2="40.1796" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.211538" stop-color="#0E2461"/>
+                        <stop offset="0.826923" stop-color="#1D49C7"/>
+                    </linearGradient>
                 </defs>
             </svg>
-            </div>
-            
-            <div class="hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-            <p class="text-xl font-bold leading-tight">Student Record</p>
-            <p class="text-xl font-bold leading-tight">System</p>
-            <p class="text-xs opacity-90 leading-tight mt-0.5">Ateneo de Zamboanga</p>
-            <p class="text-xs opacity-90 leading-tight">University</p>
-            </div>
-        </div>
+        </a>
+    </div>
+
+    <!-- Text (same as before) -->
+    <div class="hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        <p class="text-xl font-bold leading-tight">Student Record</p>
+        <p class="text-xl font-bold leading-tight">System</p>
+        <p class="text-xs opacity-90 leading-tight mt-0.5">Ateneo de Zamboanga</p>
+        <p class="text-xs opacity-90 leading-tight">University</p>
+    </div>
+
+</div>
+
+
 
         <nav class="p-4 flex-grow w-full">
             <h3 class="text-m font-bold uppercase text-gray-500 mb-3 mt-2 hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 **whitespace-nowrap**">MENU</h3>
@@ -132,39 +141,168 @@
             
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
                 
-                <div class="relative w-full md:w-auto md:flex-grow">
-                    <input type="text" placeholder="Search for student records..." 
-                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-primary-active focus:border-primary-active"
-                           aria-label="Search records">
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-                
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
-                        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0012 15.586V19l-4 4v-3.414a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-                    </div>
-                    
-                    <select class="py-2 px-3 border border-gray-300 rounded-md text-gray-700 focus:ring-primary-active focus:border-primary-active">
-                        <option>Year Level</option>
-                        <option>1st</option>
-                        <option>2nd</option>
-                        <option>3rd</option>
-                        <option>4th</option>
-                    </select>
+                <!-- Search Input -->
+                <div class="relative w-full md:w-auto md:flex-grow group">
+                    <input id="searchInput" type="text" placeholder="Search for student records..."
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-primary-active focus:border-primary-active">
 
-                    <select class="py-2 px-3 border border-gray-300 rounded-md text-gray-700 focus:ring-primary-active focus:border-primary-active">
-                        <option>Course</option>
-                        <option>BSIT</option>
-                        <option>BSCS</option>
-                        <option>BSEd</option>
-                    </select>
-                    
-                    <button class="flex items-center bg-primary-active text-white px-4 py-2 rounded-md font-medium hover:bg-nav-active transition duration-150 whitespace-nowrap">
-                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+
+                    <!-- Tooltip -->
+                    <span class="absolute left-3 top-full mt-2 px-2 py-1 text-xs bg-gray-700 text-white rounded 
+                        opacity-0 group-hover:opacity-100 transition pointer-events-none">
+                        Search student records
+                    </span>
+                </div>
+                            
+                    <div class="flex items-center space-x-3">
+
+                <!-- Apply Filters Button -->
+                <div id="applyFilters" class="relative p-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 group">
+                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0012 15.586V19l-4 4v-3.414a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+
+                    <!-- Tooltip -->
+                    <span class="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs bg-gray-700 text-white rounded 
+                        opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap">
+                        Apply filters
+                    </span>
+                </div>
+
+                <!-- Reset Filters Button -->
+                <div id="resetFilters" class="relative p-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 group">
+                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="8" stroke-width="2" />
+                        <path d="M9 9l6 6M15 9l-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                    <!-- Tooltip -->
+                    <span class="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs bg-gray-700 text-white rounded 
+                        opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap">
+                        Reset filters
+                    </span>
+                </div>
+
+
+                            
+                <!-- Year Filter -->
+                <div class="relative group">
+                    <div class="relative">
+                        <select id="yearFilter" 
+                            class="appearance-none py-2.5 px-4 pr-10 border border-gray-300 rounded-md text-gray-700 
+                                bg-white shadow-sm hover:border-gray-400 focus:ring-primary-active focus:border-primary-active 
+                                transition cursor-pointer">
+
+                            <option value="">Year Level</option>
+                            <optgroup label="Undergraduate Year Levels">
+                                <option value="1st">1st Year</option>
+                                <option value="2nd">2nd Year</option>
+                                <option value="3rd">3rd Year</option>
+                                <option value="4th">4th Year</option>
+                            </optgroup>
+                        </select>
+
+
+                        <!-- Chevron Icon -->
+                        <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <span class="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 text-xs bg-gray-700 text-white rounded 
+                        opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap">
+                        Filter by year level
+                    </span>
+                </div>
+
+
+                <!-- Course Filter -->
+                <div class="relative group">
+                    <div class="relative">
+                        <select id="courseFilter" 
+                            class="appearance-none py-2.5 px-4 pr-10 border border-gray-300 rounded-md text-gray-700 
+                                bg-white shadow-sm hover:border-gray-400 focus:ring-primary-active focus:border-primary-active 
+                                transition cursor-pointer">
+        
+                            <option value="">Course</option>
+
+                            <optgroup label="Information & Computing">
+                                <option value="BSIT">BSIT – Information Technology</option>
+                                <option value="BSCS">BSCS – Computer Science</option>
+                            </optgroup>
+
+                            <optgroup label="Business & Management">
+                                <option value="BSBA">BSBA – Business Administration</option>
+                                <option value="BSM">BSM – Marketing</option>
+                                <option value="BSA">BSA – Accountancy</option>
+                            </optgroup>
+
+                            <optgroup label="Health Sciences">
+                                <option value="BSN">BSN – Nursing</option>
+                                <option value="Psychology">BA / BS Psychology</option>
+                            </optgroup>
+
+                            <optgroup label="Education & Humanities">
+                                <option value="BSEd">BSEd – Education</option>
+                                <option value="AB English">AB English</option>
+                                <option value="AB Communication">AB Communication</option>
+                            </optgroup>
+
+                            <optgroup label="Public Safety & Service">
+                                <option value="Criminology">BS Criminology</option>
+                            </optgroup>
+
+                            <optgroup label="Hospitality & Tourism">
+                                <option value="BSHM">BSHM – Hospitality Management</option>
+                            </optgroup>
+                        </select>
+
+
+                        <!-- Chevron Icon -->
+                        <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <span class="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 text-xs bg-gray-700 text-white rounded 
+                        opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap">
+                        Filter by course
+                    </span>
+                </div>
+
+                            
+                <!-- Add Student Button -->
+                <div class="relative group">
+                    <a href="{{ route('addStudent') }}" 
+                    class="flex items-center bg-primary-active text-white px-4 py-2 rounded-md font-medium hover:bg-nav-active transition duration-150 whitespace-nowrap">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
                         Add Student
-                    </button>
+                    </a>
+
+                    <!-- Tooltip -->
+                    <span class="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 text-xs bg-gray-700 text-white rounded 
+                        opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap">
+                        Add a new student
+                    </span>
                 </div>
             </div>
+         </div>
+
             
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -192,7 +330,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody id="recordsTable" class="bg-white divide-y divide-gray-200">
                         <tr class="hover:bg-gray-50 transition duration-150">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <input type="checkbox" class="h-4 w-4 text-primary-active border-gray-300 rounded focus:ring-primary-active">
@@ -244,7 +382,73 @@
 
     </main>
 
+    <style>
+        select option {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        select option:hover {
+            background-color: #f1f5f9; /* Tailwind slate-100 */
+        }
+
+        select optgroup {
+            font-weight: 600;
+            font-size: 14px;
+            background: #f8fafc; /* Tailwind slate-50 */
+        }
+    </style>
+
 </body>
+
+    <script>
+        function filterTable() {
+            const search = document.getElementById("searchInput").value.toLowerCase();
+            const course = document.getElementById("courseFilter").value.toLowerCase().trim();
+            const year   = document.getElementById("yearFilter").value.toLowerCase().trim();
+
+            const rows = document.querySelectorAll("#recordsTable tr");
+
+            rows.forEach(row => {
+                const rowText   = row.innerText.toLowerCase();
+                const courseText = row.cells[2]?.innerText.toLowerCase().trim();
+                const yearText   = row.cells[4]?.innerText.toLowerCase().trim();
+
+                // Live search always active
+                const matchSearch = rowText.includes(search);
+
+                // Filters active only when Apply button pressed
+                const filterActive = window.filtersApplied === true;
+                const matchCourse = !filterActive || course === "" || courseText === course;
+                const matchYear   = !filterActive || year === "" || yearText === year;
+
+                row.style.display = (matchSearch && matchCourse && matchYear) ? "" : "none";
+            });
+        }
+
+        // Live search
+        document.getElementById("searchInput").addEventListener("input", filterTable);
+
+        // Apply filters
+        document.getElementById("applyFilters").addEventListener("click", () => {
+            window.filtersApplied = true;
+            filterTable();
+        });
+
+        // Reset filters
+        document.getElementById("resetFilters").addEventListener("click", () => {
+            // Clear values
+            document.getElementById("searchInput").value = "";
+            document.getElementById("courseFilter").value = "";
+            document.getElementById("yearFilter").value = "";
+
+            // Disable filters
+            window.filtersApplied = false;
+
+            // Show all rows again
+            filterTable();
+        });
+    </script>
 </html>
     
    
