@@ -218,9 +218,29 @@
                             <label class="text-sm font-medium text-gray-700">Course / Department <span class="text-red-500">*</span></label>
                             <select name="course" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                                 <option value="">Select course</option>
+                                <option>Associate in Electronics Engineering Technology</option>
                                 <option>BS Information Technology</option>
                                 <option>BS Computer Science</option>
+                                <option>BS New Media and Computer Animation</option>
+                                <option>BS Biology</option>
+                                <option>BS Mathematics</option>
+                                <option>BS Computer Engineering</option>
+                                <option>BS Bio Medical Engineering</option>
+                                <option>BS Civil Engineering</option>
+                                <option>BS Electronics Communications Engineering</option>
                                 <option>BS Education</option>
+                                <option>BS Nursing</option>
+                                <option>BS Accountancy</option>
+                                <option>BS Management Accounting</option>
+                                <option>BS Business Administration</option>
+                                <option>BS Legal Management</option>
+                                <option>BS Office Administration</option>
+                                <option>BA Philosophy</option>
+                                <option>BS Psychology</option>
+                                <option>BA Communication</option>
+                                <option>BA English Language Studies</option>
+                                <option>BA Interdisciplinary Studies</option>
+                                <option>BA International Studies</option>
                             </select>
                         </div>
                         <div>
@@ -718,21 +738,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function showCreateConfirmation() {
-            document.getElementById('createConfirmationModal').classList.remove('hidden');
-        }
-        
-        function hideCreateConfirmation() {
-            document.getElementById('createConfirmationModal').classList.add('hidden');
-        }
-        
-        function confirmCreateStudent() {
-            hideCreateConfirmation();
-            document.getElementById('studentForm').submit();
-        }
-    </script>
 
 </body>
 </html>

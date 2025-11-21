@@ -346,14 +346,14 @@
                     <div class="flex items-center">
                         <span class="w-3 h-3 rounded-full bg-[#7BB7DC] mr-2"></span>
                         <div class="text-center">
-                            <p class="text-sm font-bold text-gray-800" id="maleCount">45,414</p>
+                            <p class="text-sm font-bold text-gray-800" id="maleCount">{{ $genderData['male'] ?? 0 }}</p>
                             <p class="text-xs text-gray-500">Male</p>
                         </div>
                     </div>
                     <div class="flex items-center">
                         <span class="w-3 h-3 rounded-full bg-[#E27EE4] mr-2"></span>
                         <div class="text-center">
-                            <p class="text-sm font-bold text-gray-800" id="femaleCount">40,270</p>
+                            <p class="text-sm font-bold text-gray-800" id="femaleCount">{{ $genderData['female'] ?? 0 }}</p>
                             <p class="text-xs text-gray-500">Female</p>
                         </div>
                     </div>
@@ -436,8 +436,10 @@
             }
             
             console.log('Initializing Chart.js pie chart...');
-            const maleCount = 45414;
-            const femaleCount = 40270;
+            // Get real data from the controller
+            const maleCount = {{ $genderData['male'] ?? 0 }};
+            const femaleCount = {{ $genderData['female'] ?? 0 }};
+            
             const genderChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -464,7 +466,7 @@
                                     const label = context.label || '';
                                     const value = context.parsed || 0;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
                                     return label + ': ' + value.toLocaleString() + ' (' + percentage + '%)';
                                 }
                             }
@@ -472,7 +474,7 @@
                     }
                 }
             });
-            console.log('Chart.js pie chart rendered successfully'); 
+            console.log('Chart.js pie chart rendered successfully with real data'); 
         });
     </script>
 </body>

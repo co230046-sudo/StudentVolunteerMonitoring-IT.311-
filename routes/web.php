@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\DashboardController;
 
 // Show Login Page (Default)
 Route::view('/', 'login')->name('login');
@@ -21,7 +22,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Pages that require login
 Route::middleware('auth')->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     // Student management routes
     Route::resource('students', StudentController::class);
