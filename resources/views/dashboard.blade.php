@@ -300,7 +300,7 @@
             <div class="bg-white p-5 rounded-lg shadow">
                 <p class="text-base font-bold text-gray-800 mb-3">Quick Shortcuts</p>
                 <div class="space-y-2">
-                    <button class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150">
+                    <a href="{{ route('addStudent') }}" class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
                         <svg width="24" height="20" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g filter="url(#filter0_d_35_423)">
                             <path d="M6.66663 16H25.3333M16 25.3333V6.66666" stroke="#FAFAFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -318,16 +318,14 @@
                             </filter>
                             </defs>
                         </svg>
-                        <a href="{{ route('addStudent') }}">
-                        Add Student Record</a>
-                    </button>
-                    <button class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
+                        Add Student Record
+                    </a>
+                    <a href="{{ route('studentRecord') }}" class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
                         <svg width="15" height="20" viewBox="0 0 28 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 3.4C0 2.49826 0.358213 1.63346 0.995837 0.995837C1.63346 0.358213 2.49826 0 3.4 0H11.9L15.3 3.4H23.8C24.7017 3.4 25.5665 3.75821 26.2042 4.39584C26.8418 5.03346 27.2 5.89826 27.2 6.8V17C27.2 17.9017 26.8418 18.7665 26.2042 19.4042C25.5665 20.0418 24.7017 20.4 23.8 20.4H3.4C2.49826 20.4 1.63346 20.0418 0.995837 19.4042C0.358213 18.7665 0 17.9017 0 17V3.4Z" fill="white"/>
                         </svg>
-                        <a href="{{ route('studentRecord') }}">
-                        View Student Records</a>
-                    </button>
+                        View Student Records
+                    </a>
                 </div>
             </div>
 

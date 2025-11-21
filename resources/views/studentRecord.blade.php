@@ -314,7 +314,7 @@
     </div>
 
     <!-- Hidden form for delete submission -->
-    <form id="deleteForm" method="POST" style="display: none;">
+    <form id="deleteForm" method="POST" action="" style="display: none;">
         @csrf
         @method('DELETE')
     </form>
