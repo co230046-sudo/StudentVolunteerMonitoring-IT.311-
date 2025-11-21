@@ -124,9 +124,28 @@
         <header class="mb-6">
             <h1 class="text-4xl font-bold text-gray-900">Add Student</h1>
             <p class="text-gray-600 text-sm mt-1">Complete the multi-step intake form.</p>
+            <p class="text-gray-500 text-xs mt-2">
+                <span class="text-red-500">*</span> Required fields
+            </p>
         </header>
         
         <div class="bg-white p-8 rounded-2xl shadow-md">
+            @if(session('success'))
+                <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Please fix the following errors:</strong>
+                    <ul class="mt-2 list-disc list-inside">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="flex items-center mb-6 space-x-4">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-gray-500">Step</p>
@@ -139,33 +158,38 @@
                 </div>
             </div>
 
-            <form id="multiStepForm" class="space-y-6">
+            <form id="multiStepForm" class="space-y-6" method="POST" action="{{ route('students.store') }}" enctype="multipart/form-data">
+                @csrf
                 <section class="form-step block" data-step="1">
                     <div class="flex flex-col lg:flex-row gap-6">
                         <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl px-10 py-8 text-center bg-gray-50">
-                            <div class="w-32 h-32 rounded-xl bg-white flex items-center justify-center text-gray-400 text-xs uppercase tracking-wide">Upload Photo</div>
+                            <div id="photoPreview" class="w-32 h-32 rounded-xl bg-white flex items-center justify-center text-gray-400 text-xs uppercase tracking-wide">
+                                <img id="previewImage" class="w-full h-full object-cover rounded-xl hidden" alt="Preview">
+                                <span id="uploadText">Upload Photo</span>
+                            </div>
                             <p class="mt-4 text-sm text-gray-500">Drag & drop or browse</p>
-                            <input type="file" class="hidden" id="photoUpload" accept="image/*">
+                            <input type="file" class="hidden" id="photoUpload" name="photoUpload" accept="image/*">
                             <button type="button" class="mt-3 text-primary-active text-sm font-medium" onclick="document.getElementById('photoUpload').click()">Choose File</button>
+                            <button type="button" id="removePhoto" class="mt-2 text-red-500 text-sm font-medium hidden" onclick="removePhotoPreview()">Remove Photo</button>
                         </div>
                         <div class="flex-1">
                             <h2 class="text-2xl font-semibold text-gray-900 mb-4">Personal Information</h2>
                             <p class="text-sm text-gray-500 mb-6">Specify the student's personal information for record keeping.</p>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="text-sm font-medium text-gray-700">First Name</label>
-                                    <input type="text" name="firstName" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                                    <label class="text-sm font-medium text-gray-700">First Name <span class="text-red-500">*</span></label>
+                                    <input type="text" name="firstName" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter first name">
                                 </div>
                                 <div>
-                                    <label class="text-sm font-medium text-gray-700">Last Name</label>
-                                    <input type="text" name="lastName" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                                    <label class="text-sm font-medium text-gray-700">Last Name <span class="text-red-500">*</span></label>
+                                    <input type="text" name="lastName" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter last name">
                                 </div>
                                 <div>
-                                    <label class="text-sm font-medium text-gray-700">Student ID</label>
-                                    <input type="text" name="studentId" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                                    <label class="text-sm font-medium text-gray-700">Student ID <span class="text-red-500">*</span></label>
+                                    <input type="text" name="studentId" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter student ID">
                                 </div>
                                 <div>
-                                    <label class="text-sm font-medium text-gray-700">Gender</label>
+                                    <label class="text-sm font-medium text-gray-700">Gender <span class="text-red-500">*</span></label>
                                     <select name="gender" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                                         <option value="">Select gender</option>
                                         <option>Male</option>
@@ -174,12 +198,12 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="text-sm font-medium text-gray-700">Date of Birth</label>
+                                    <label class="text-sm font-medium text-gray-700">Date of Birth <span class="text-red-500">*</span></label>
                                     <input type="date" name="dob" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                                 </div>
                                 <div>
-                                    <label class="text-sm font-medium text-gray-700">Nationality</label>
-                                    <input type="text" name="nationality" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                                    <label class="text-sm font-medium text-gray-700">Nationality <span class="text-red-500">*</span></label>
+                                    <input type="text" name="nationality" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter nationality">
                                 </div>
                             </div>
                         </div>
@@ -191,7 +215,7 @@
                     <p class="text-sm text-gray-500 mb-6">Provide the student's academic background and enrollment details.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Course / Department</label>
+                            <label class="text-sm font-medium text-gray-700">Course / Department <span class="text-red-500">*</span></label>
                             <select name="course" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                                 <option value="">Select course</option>
                                 <option>BS Information Technology</option>
@@ -201,10 +225,10 @@
                         </div>
                         <div>
                             <label class="text-sm font-medium text-gray-700">Academic Advisor</label>
-                            <input type="text" name="advisor" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                            <input type="text" name="advisor" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter academic advisor name">
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Year Level</label>
+                            <label class="text-sm font-medium text-gray-700">Year Level <span class="text-red-500">*</span></label>
                             <select name="yearLevel" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                                 <option value="">Select year</option>
                                 <option>1st Year</option>
@@ -214,7 +238,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Academic Status</label>
+                            <label class="text-sm font-medium text-gray-700">Academic Status <span class="text-red-500">*</span></label>
                             <select name="academicStatus" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                                 <option value="">Select status</option>
                                 <option>Regular</option>
@@ -223,7 +247,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Start Date</label>
+                            <label class="text-sm font-medium text-gray-700">Start Date <span class="text-red-500">*</span></label>
                             <input type="date" name="startDate" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
                         </div>
                         <div>
@@ -238,24 +262,24 @@
                     <p class="text-sm text-gray-500 mb-6">Maintain the student's contact information for announcements and notices.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
-                            <label class="text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" name="email" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                            <label class="text-sm font-medium text-gray-700">Email Address <span class="text-red-500">*</span></label>
+                            <input type="email" name="email" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="e.g. student@adzu.edu.ph or name@gmail.com">
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Phone Number</label>
-                            <input type="tel" name="phone" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                            <label class="text-sm font-medium text-gray-700">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" name="phone" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="09123456789 (11 digits)" maxlength="11">
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Address</label>
-                            <input type="text" name="address" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                            <label class="text-sm font-medium text-gray-700">Address <span class="text-red-500">*</span></label>
+                            <input type="text" name="address" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter full address">
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Emergency Contact Name</label>
-                            <input type="text" name="emergencyName" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                            <label class="text-sm font-medium text-gray-700">Emergency Contact Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="emergencyName" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="Enter emergency contact name">
                         </div>
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Emergency Contact Number</label>
-                            <input type="tel" name="emergencyPhone" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active">
+                            <label class="text-sm font-medium text-gray-700">Emergency Contact Number <span class="text-red-500">*</span></label>
+                            <input type="tel" name="emergencyPhone" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-active focus:border-primary-active" placeholder="09123456789 (11 digits)" maxlength="11">
                         </div>
                     </div>
                 </section>
@@ -273,7 +297,7 @@
                     <div class="flex gap-3">
                         <button type="button" id="cancelBtn" class="px-6 py-3 rounded-lg bg-gray-200 text-gray-800 font-semibold hover:bg-gray-300">Cancel</button>
                         <button type="button" id="nextBtn" class="px-6 py-3 rounded-lg bg-primary-active text-white font-semibold hover:bg-primary-dark transition">Save &amp; Next Section</button>
-                        <button type="submit" id="submitBtn" class="hidden px-6 py-3 rounded-lg bg-primary-active text-white font-semibold hover:bg-primary-dark transition">Submit</button>
+                        <button type="button" id="submitBtn" onclick="showCreateConfirmation()" class="hidden px-6 py-3 rounded-lg bg-primary-active text-white font-semibold hover:bg-primary-dark transition">Add Student</button>
                     </div>
                 </div>
             </form>
@@ -315,17 +339,178 @@
 
         function captureStepData(step) {
             const inputs = formSteps[step - 1].querySelectorAll('input, select');
+            let hasErrors = false;
+            
             for (const input of inputs) {
-                if (input.required && !input.value.trim()) {
+                // Clear previous error styling
+                input.classList.remove('ring-2', 'ring-red-400', 'border-red-400');
+                
+                // Check if required field is empty
+                if (input.required && (!input.value || input.value.trim() === '')) {
                     input.focus();
-                    input.classList.add('ring-2', 'ring-red-400');
-                    setTimeout(() => input.classList.remove('ring-2', 'ring-red-400'), 1500);
+                    input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                    
+                    // Show error message
+                    showFieldError(input, 'This field is required');
+                    hasErrors = true;
+                    break;
+                }
+                
+                // Additional validation for specific field types
+                if (input.type === 'email' && input.value) {
+                    const emailRegex = /^[a-zA-Z0-9._%+-]+@(adzu\.edu\.ph|gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/;
+                    if (!emailRegex.test(input.value)) {
+                        input.focus();
+                        input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                        showFieldError(input, 'Email must be from adzu.edu.ph, gmail.com, yahoo.com, outlook.com, or hotmail.com');
+                        hasErrors = true;
+                        break;
+                    }
+                }
+                
+                if (input.type === 'tel' && input.value) {
+                    const phoneRegex = /^(09|\+639)\d{9}$/;
+                    if (!phoneRegex.test(input.value) || input.value.length !== 11) {
+                        input.focus();
+                        input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                        showFieldError(input, 'Phone number must be a valid Philippine number (09XXXXXXXXX) with exactly 11 digits');
+                        hasErrors = true;
+                        break;
+                    }
+                }
+                
+                if (input.type === 'date' && input.name === 'dob' && input.value) {
+                    const birthDate = new Date(input.value);
+                    const today = new Date();
+                    const age = today.getFullYear() - birthDate.getFullYear();
+                    if (age < 16 || age > 50) {
+                        input.focus();
+                        input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                        showFieldError(input, 'Please enter a valid date of birth (age 16-50)');
+                        hasErrors = true;
+                        break;
+                    }
+                }
+                
+                // Handle file input differently
+                if (input.type === 'file') {
+                    formData[input.name] = input.files[0] || null;
+                } else {
+                    formData[input.name] = input.value.trim();
+                }
+            }
+            
+            // Clear any existing error messages if no errors
+            if (!hasErrors) {
+                clearFieldErrors();
+            }
+            
+            return !hasErrors;
+        }
+
+        function showFieldError(input, message) {
+            // Remove any existing error message
+            const existingError = input.parentNode.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Create and insert error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message text-red-500 text-sm mt-1';
+            errorDiv.textContent = message;
+            input.parentNode.appendChild(errorDiv);
+        }
+
+        function clearFieldErrors() {
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => msg.remove());
+        }
+
+        // Real-time validation as user types
+        function attachRealTimeValidation() {
+            const inputs = document.querySelectorAll('input[required], select[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateSingleField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    // Clear error styling when user starts typing
+                    if (this.classList.contains('ring-red-400')) {
+                        this.classList.remove('ring-2', 'ring-red-400', 'border-red-400');
+                        const errorMsg = this.parentNode.querySelector('.error-message');
+                        if (errorMsg) errorMsg.remove();
+                    }
+                });
+            });
+        }
+
+        function validateSingleField(input) {
+            input.classList.remove('ring-2', 'ring-red-400', 'border-red-400');
+            const errorMsg = input.parentNode.querySelector('.error-message');
+            if (errorMsg) errorMsg.remove();
+            
+            if (input.required && (!input.value || input.value.trim() === '')) {
+                input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                showFieldError(input, 'This field is required');
+                return false;
+            }
+            
+            if (input.type === 'email' && input.value) {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@(adzu\.edu\.ph|gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/;
+                if (!emailRegex.test(input.value)) {
+                    input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                    showFieldError(input, 'Email must be from adzu.edu.ph, gmail.com, yahoo.com, outlook.com, or hotmail.com');
                     return false;
                 }
-                formData[input.name] = input.value;
             }
+            
+            if (input.type === 'tel' && input.value) {
+                const phoneRegex = /^(09|\+639)\d{9}$/;
+                if (!phoneRegex.test(input.value) || input.value.length !== 11) {
+                    input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                    showFieldError(input, 'Phone number must be a valid Philippine number (09XXXXXXXXX) with exactly 11 digits');
+                    return false;
+                }
+            }
+            
             return true;
         }
+
+        function removePhotoPreview() {
+            const photoUpload = document.getElementById('photoUpload');
+            const previewImage = document.getElementById('previewImage');
+            const uploadText = document.getElementById('uploadText');
+            const removeButton = document.getElementById('removePhoto');
+            
+            photoUpload.value = '';
+            previewImage.classList.add('hidden');
+            uploadText.classList.remove('hidden');
+            removeButton.classList.add('hidden');
+            
+            // Remove from form data
+            delete formData['photoUpload'];
+        }
+
+        // Photo upload preview functionality
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const previewImage = document.getElementById('previewImage');
+            const uploadText = document.getElementById('uploadText');
+            const removeButton = document.getElementById('removePhoto');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.classList.remove('hidden');
+                    uploadText.classList.add('hidden');
+                    removeButton.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
         function populateReview() {
             const sections = [
@@ -337,7 +522,8 @@
                         ['Student ID', 'studentId'],
                         ['Gender', 'gender'],
                         ['Date of Birth', 'dob'],
-                        ['Nationality', 'nationality']
+                        ['Nationality', 'nationality'],
+                        ['Photo', 'photoUpload']
                     ]
                 },
                 {
@@ -375,12 +561,23 @@
                         </button>
                     </div>
                     <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
-                        ${section.fields.map(([label, key]) => `
-                            <div>
-                                <dt class="font-medium text-gray-700">${label}</dt>
-                                <dd class="text-gray-900">${formData[key] || '—'}</dd>
-                            </div>
-                        `).join('')}
+                        ${section.fields.map(([label, key]) => {
+                            if (key === 'photoUpload') {
+                                const photoFile = formData[key];
+                                return `
+                                    <div class="md:col-span-2">
+                                        <dt class="font-medium text-gray-700">${label}</dt>
+                                        <dd class="text-gray-900">${photoFile ? photoFile.name : 'No photo uploaded'}</dd>
+                                    </div>
+                                `;
+                            }
+                            return `
+                                <div>
+                                    <dt class="font-medium text-gray-700">${label}</dt>
+                                    <dd class="text-gray-900">${formData[key] || '—'}</dd>
+                                </div>
+                            `;
+                        }).join('')}
                     </dl>
                 </div>
             `).join('');
@@ -417,15 +614,124 @@
         });
 
         form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            alert('Student record submitted!');
-            form.reset();
-            Object.keys(formData).forEach(key => delete formData[key]);
-            currentStep = 1;
-            showStep(currentStep);
+            // Validate current step first
+            if (!captureStepData(currentStep)) {
+                event.preventDefault();
+                return;
+            }
+            
+            // Validate all previous steps for final submission
+            let allStepsValid = true;
+            for (let i = 1; i <= totalSteps - 1; i++) {
+                const stepInputs = formSteps[i - 1].querySelectorAll('input[required], select[required]');
+                for (const input of stepInputs) {
+                    if (!input.value || input.value.trim() === '') {
+                        allStepsValid = false;
+                        // Navigate to the step with error
+                        currentStep = i;
+                        showStep(currentStep);
+                        input.focus();
+                        input.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+                        showFieldError(input, 'This field is required');
+                        break;
+                    }
+                }
+                if (!allStepsValid) break;
+            }
+            
+            if (!allStepsValid) {
+                event.preventDefault();
+                alert('Please fill in all required fields before submitting.');
+                return;
+            }
+            
+            // Form will submit naturally to the Laravel route
         });
 
+        // Initialize real-time validation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            attachRealTimeValidation();
+            
+            // Add phone number input restrictions
+            const phoneInputs = document.querySelectorAll('input[type="tel"]');
+            phoneInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    // Only allow numbers and remove any non-numeric characters
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    
+                    // Limit to 11 digits
+                    if (this.value.length > 11) {
+                        this.value = this.value.slice(0, 11);
+                    }
+                    
+                    // Auto-format: if starts with 9 and length is getting to 10, prepend 0
+                    if (this.value.length === 10 && this.value.startsWith('9')) {
+                        this.value = '0' + this.value;
+                    }
+                });
+                
+                input.addEventListener('keypress', function(e) {
+                    // Only allow numbers
+                    if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Escape', 'Enter'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+
+        // Confirmation modal functions
+        function showCreateConfirmation() {
+            document.getElementById('createConfirmationModal').classList.remove('hidden');
+            document.getElementById('createConfirmationModal').classList.add('flex');
+        }
+        
+        function hideCreateConfirmation() {
+            document.getElementById('createConfirmationModal').classList.add('hidden');
+            document.getElementById('createConfirmationModal').classList.remove('flex');
+        }
+        
+        function confirmCreateStudent() {
+            hideCreateConfirmation();
+            document.getElementById('multiStepForm').submit();
+        }
+
         showStep(currentStep);
+    </script>
+
+    <!-- Create Student Confirmation Modal -->
+    <div id="createConfirmationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-xl shadow-xl max-w-md w-full mx-4">
+            <div class="flex items-center mb-4">
+                <div class="flex-shrink-0">
+                    <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.954-.833-2.724 0L4.088 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-lg font-medium text-gray-900">Create Student Record</h3>
+                    <p class="text-sm text-gray-500">Are you sure you want to create this student record?</p>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button type="button" onclick="hideCreateConfirmation()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+                <button type="button" onclick="confirmCreateStudent()" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Yes, Create</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCreateConfirmation() {
+            document.getElementById('createConfirmationModal').classList.remove('hidden');
+        }
+        
+        function hideCreateConfirmation() {
+            document.getElementById('createConfirmationModal').classList.add('hidden');
+        }
+        
+        function confirmCreateStudent() {
+            hideCreateConfirmation();
+            document.getElementById('studentForm').submit();
+        }
     </script>
 
 </body>

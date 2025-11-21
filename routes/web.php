@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
 
 // Show Login Page (Default)
 Route::view('/', 'login')->name('login');
@@ -21,6 +22,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Pages that require login
 Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
-    Route::view('/addStudent', 'addStudent')->name('addStudent');
-    Route::view('/studentRecord', 'studentRecord')->name('studentRecord');
+    
+    // Student management routes
+    Route::resource('students', StudentController::class);
+    Route::get('/students-search', [StudentController::class, 'search'])->name('students.search');
+    
+    // Keep the old routes for backward compatibility
+    Route::get('/addStudent', [StudentController::class, 'create'])->name('addStudent');
+    Route::get('/studentRecord', [StudentController::class, 'index'])->name('studentRecord');
 });
