@@ -106,7 +106,9 @@
             </svg>
             
             <div class="hidden opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 py-2 whitespace-nowrap">
-                <p class="text-sm font-bold text-gray-800 leading-tight">David De Jesus</p>
+                <p class="text-sm font-bold text-gray-800 leading-tight">
+                        {{ auth()->user()->full_name }}
+                </p>
                 <p class="text-xs text-gray-500 leading-tight mt-0.5">Admin</p>
             </div>
             </div>
