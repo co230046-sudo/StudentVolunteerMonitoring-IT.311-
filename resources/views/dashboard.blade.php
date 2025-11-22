@@ -186,25 +186,34 @@
 <body class="min-h-screen flex">
     <aside class="w-75 flex-shrink-0 bg-white shadow-lg flex flex-col hidden lg:flex">
         <div class="mt-10 text-black p-4 flex items-center">
-            <div class="bg-white rounded-lg mr-3 flex items-center justify-center">
-                <svg width="75" height="81" viewBox="0 0 89 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="89" height="80.3592" rx="11" fill="url(#paint0_linear_32_135)"/>
-                    <path d="M22.466 24.1942V50.1165C22.466 51.4915 22.992 52.8102 23.9283 53.7825C24.8645 54.7547 26.1344 55.301 27.4585 55.301H62.4056C63.7297 55.301 64.9995 54.7547 65.9358 53.7825C66.8721 52.8102 67.3981 51.4915 67.3981 50.1165V29.3786C67.3981 28.0036 66.8721 26.6849 65.9358 25.7127C64.9995 24.7404 63.7297 24.1942 62.4056 24.1942H47.4283L42.4358 19.0097H27.4585C26.1344 19.0097 24.8645 19.5559 23.9283 20.5282C22.992 21.5005 22.466 22.8192 22.466 24.1942Z" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
+
+    <!-- Smaller background + smaller icon -->
+    <div class="bg-white rounded-lg mr-3 flex items-center justify-center p-2">
+        <a href="{{ route('dashboard') }}" class="block cursor-pointer">
+            <svg width="55" height="60" viewBox="0 0 89 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="89" height="80.3592" rx="11" fill="url(#paint0_linear_32_135)"/>
+                <path d="M22.466 24.1942V50.1165C22.466 51.4915 22.992 52.8102 23.9283 53.7825C24.8645 54.7547 26.1344 55.301 27.4585 55.301H62.4056C63.7297 55.301 64.9995 54.7547 65.9358 53.7825C66.8721 52.8102 67.3981 51.4915 67.3981 50.1165V29.3786C67.3981 28.0036 66.8721 26.6849 65.9358 25.7127C64.9995 24.7404 63.7297 24.1942 62.4056 24.1942H47.4283L42.4358 19.0097H27.4585C26.1344 19.0097 24.8645 19.5559 23.9283 20.5282C22.992 21.5005 22.466 22.8192 22.466 24.1942Z"
+                      stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
                     <linearGradient id="paint0_linear_32_135" x1="0" y1="40.1796" x2="89" y2="40.1796" gradientUnits="userSpaceOnUse">
-                    <stop offset="0.211538" stop-color="#0E2461"/>
-                    <stop offset="0.826923" stop-color="#1D49C7"/>
+                        <stop offset="0.211538" stop-color="#0E2461"/>
+                        <stop offset="0.826923" stop-color="#1D49C7"/>
                     </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-            <div>
-                <p class="text-xl font-bold leading-tight">Student Record</p>
-                <p class="text-xl font-bold leading-tight">System</p>
-                <p class="text-xs opacity-90 leading-tight mt-0.5">Ateneo de Zamboanga</p>
-                <p class="text-xs opacity-90 leading-tight">University</p>
-            </div>
-        </div>
+                </defs>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Text stays the same -->
+    <div>
+        <p class="text-xl font-bold leading-tight">Student Record</p>
+        <p class="text-xl font-bold leading-tight">System</p>
+        <p class="text-xs opacity-90 leading-tight mt-0.5">Ateneo de Zamboanga</p>
+        <p class="text-xs opacity-90 leading-tight">University</p>
+    </div>
+
+</div>
+
 
         <nav class="p-4 flex-grow">
             <h3 class="text-m font-bold uppercase text-gray-500 mb-3 mt-2">MENU</h3>
@@ -300,35 +309,49 @@
             <div class="bg-white p-5 rounded-lg shadow">
                 <p class="text-base font-bold text-gray-800 mb-3">Quick Shortcuts</p>
                 <div class="space-y-2">
-                    <button class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150">
+<<<<<<< HEAD
+                    <!-- Add Student Record -->
+                    <a href="{{ route('addStudent') }}"
+                    class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
+
+=======
+                    <a href="{{ route('addStudent') }}" class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
+>>>>>>> origin/Katrina's-Branch
                         <svg width="24" height="20" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g filter="url(#filter0_d_35_423)">
-                            <path d="M6.66663 16H25.3333M16 25.3333V6.66666" stroke="#FAFAFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6.66663 16H25.3333M16 25.3333V6.66666"
+                                    stroke="#FAFAFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                             </g>
-                            <defs>
-                            <filter id="filter0_d_35_423" x="-4" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                            <feOffset dy="4"/>
-                            <feGaussianBlur stdDeviation="2"/>
-                            <feComposite in2="hardAlpha" operator="out"/>
-                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_35_423"/>
-                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_35_423" result="shape"/>
-                            </filter>
-                            </defs>
                         </svg>
-                        <a href="{{ route('addStudent') }}">
-                        Add Student Record</a>
-                    </button>
-                    <button class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
+<<<<<<< HEAD
+
+                        Add Student Record
+                    </a>
+
+                    <!-- View Student Records -->
+                    <a href="{{ route('studentRecord') }}"
+                    class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
+
+=======
+                        Add Student Record
+                    </a>
+                    <a href="{{ route('studentRecord') }}" class="w-full flex items-center justify-center bg-blue-700 hover:bg-nav-active text-white font-semibold py-2.5 px-4 rounded-md transition duration-150 gap-2">
+>>>>>>> origin/Katrina's-Branch
                         <svg width="15" height="20" viewBox="0 0 28 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 3.4C0 2.49826 0.358213 1.63346 0.995837 0.995837C1.63346 0.358213 2.49826 0 3.4 0H11.9L15.3 3.4H23.8C24.7017 3.4 25.5665 3.75821 26.2042 4.39584C26.8418 5.03346 27.2 5.89826 27.2 6.8V17C27.2 17.9017 26.8418 18.7665 26.2042 19.4042C25.5665 20.0418 24.7017 20.4 23.8 20.4H3.4C2.49826 20.4 1.63346 20.0418 0.995837 19.4042C0.358213 18.7665 0 17.9017 0 17V3.4Z" fill="white"/>
+                            <path d="M0 3.4C0 2.49826 0.358213 1.63346 0.995837 0.995837C1.63346 0.358213 2.49826 0 3.4 0H11.9L15.3 3.4H23.8C24.7017 3.4 25.5665 3.75821 26.2042 4.39584C26.8418 5.03346 27.2 5.89826 27.2 6.8V17C27.2 17.9017 26.8418 18.7665 26.2042 19.4042C25.5665 20.0418 24.7017 20.4 23.8 20.4H3.4C2.49826 20.4 1.63346 20.0418 0.995837 19.4042C0.358213 18.7665 0 17.9017 0 17V3.4Z"
+                                fill="white"/>
                         </svg>
-                        <a href="{{ route('studentRecord') }}">
-                        View Student Records</a>
-                    </button>
+<<<<<<< HEAD
+
+                        View Student Records
+                    </a>
+
+=======
+                        View Student Records
+                    </a>
+>>>>>>> origin/Katrina's-Branch
                 </div>
+
             </div>
 
             <div class="bg-white p-5 rounded-lg shadow col-span-1 lg:col-span-2">
@@ -346,14 +369,14 @@
                     <div class="flex items-center">
                         <span class="w-3 h-3 rounded-full bg-[#7BB7DC] mr-2"></span>
                         <div class="text-center">
-                            <p class="text-sm font-bold text-gray-800" id="maleCount">45,414</p>
+                            <p class="text-sm font-bold text-gray-800" id="maleCount">{{ $genderData['male'] ?? 0 }}</p>
                             <p class="text-xs text-gray-500">Male</p>
                         </div>
                     </div>
                     <div class="flex items-center">
                         <span class="w-3 h-3 rounded-full bg-[#E27EE4] mr-2"></span>
                         <div class="text-center">
-                            <p class="text-sm font-bold text-gray-800" id="femaleCount">40,270</p>
+                            <p class="text-sm font-bold text-gray-800" id="femaleCount">{{ $genderData['female'] ?? 0 }}</p>
                             <p class="text-xs text-gray-500">Female</p>
                         </div>
                     </div>
@@ -436,8 +459,10 @@
             }
             
             console.log('Initializing Chart.js pie chart...');
-            const maleCount = 45414;
-            const femaleCount = 40270;
+            // Get real data from the controller
+            const maleCount = {{ $genderData['male'] ?? 0 }};
+            const femaleCount = {{ $genderData['female'] ?? 0 }};
+            
             const genderChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -464,7 +489,7 @@
                                     const label = context.label || '';
                                     const value = context.parsed || 0;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
                                     return label + ': ' + value.toLocaleString() + ' (' + percentage + '%)';
                                 }
                             }
@@ -472,7 +497,7 @@
                     }
                 }
             });
-            console.log('Chart.js pie chart rendered successfully'); 
+            console.log('Chart.js pie chart rendered successfully with real data'); 
         });
     </script>
 </body>
