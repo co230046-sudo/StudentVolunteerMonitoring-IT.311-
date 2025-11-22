@@ -352,7 +352,7 @@
             // Toggle icons
             eyeOff.classList.toggle("hidden", show);
             eyeOn.classList.toggle("hidden", !show);
-        });
+        }); 
     </script>
 
 </body>
